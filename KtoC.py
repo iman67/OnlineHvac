@@ -3,7 +3,7 @@
 #https://pypi.org/project/pytemperature/
 
 
-def Celsius_to_Kelvin(C):
+def Kelvi_to_Celsius(C):
     return (K - 273.15)
 # Driver Code
 # variable to hold the 
