@@ -1,29 +1,18 @@
-/*
-  Rui Santos
-  Complete project details at Complete project details at https://RandomNerdTutorials.com/esp32-http-get-open-weather-map-thingspeak-arduino/
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files.
-
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
-*/
-
-#include <WiFi.h>
-#include <HTTPClient.h>
+#include <ESPWiFi.h>
+#include <ESP8266HTTPClient.h>
 #include <Arduino_JSON.h>
 
-const char* ssid = "REPLACE_WITH_YOUR_SSID";
-const char* password = "REPLACE_WITH_YOUR_PASSWORD";
+const char* ssid = "YOUR SSID";
+const char* password = "YOUR PASSWORD";
 
 // Your Domain name with URL path or IP address with path
-String openWeatherMapApiKey = "REPLACE_WITH_YOUR_OPEN_WEATHER_MAP_API_KEY";
+String openWeatherMapApiKey = "YOUR API KEY";
 // Example:
 //String openWeatherMapApiKey = "bd939aa3d23ff33d3c8f5dd1dd435";
 
 // Replace with your country code and city
-String city = "Porto";
-String countryCode = "PT";
+String city = "Tehran";
+String countryCode = "IR";
 
 // THE DEFAULT TIMER IS SET TO 10 SECONDS FOR TESTING PURPOSES
 // For a final application, check the API call limits per hour/minute to avoid getting blocked/banned
@@ -71,7 +60,9 @@ void loop() {
       Serial.print("JSON object = ");
       Serial.println(myObject);
       Serial.print("Temperature: ");
-      Serial.println(myObject["main"]["temp"]);
+      double temp = (double)myObject["main"]["temp"];
+      temp-=273;
+      Serial.println(temp);
       Serial.print("Pressure: ");
       Serial.println(myObject["main"]["pressure"]);
       Serial.print("Humidity: ");
